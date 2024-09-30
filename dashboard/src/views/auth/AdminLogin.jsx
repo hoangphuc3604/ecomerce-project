@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { admin_login } from '../../store/Reducers/authReducer';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { admin_login, messageClear } from '../../store/Reducers/authReducer';
+import { PulseLoader } from 'react-spinners';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
 
+    const navigate = useNavigate()
     const [state, setState] = useState({
         email: '',
         password: ''
     })
 
     const dispatch = useDispatch()
+    const {loader, errorMessage, successMessage} = useSelector(state => state.auth)
 
     const inputHandle = (e) => {
         setState({
@@ -22,6 +27,27 @@ const AdminLogin = () => {
         e.preventDefault()
         dispatch(admin_login(state))
     }
+
+    const overrideStyle = {
+        dislay: 'flex',
+        margin: '0 auto',
+        height: '50%',
+        justifyContent: 'center',
+        alignItem: 'center'
+    }
+
+    useEffect(() => {
+        if (errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+
+        if (successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+            navigate('/')
+        }
+    })
 
     return (
         <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
@@ -49,9 +75,9 @@ const AdminLogin = () => {
                                 onChange={inputHandle} value={state.password} required/>
                         </div>
 
-                        <button className='bg-slate-700 w-full hover:shadow-blue-300/50 hover:shadow-lg 
+                        <button disabled={loader ? true : false} className='bg-slate-700 w-full hover:shadow-blue-300/50 hover:shadow-lg 
                         text-white rounded-md px-7 py-2 mb-3'>
-                            Login
+                            {loader ? <PulseLoader color='#fff' cssOverride={overrideStyle}/> : 'Login'}
                         </button>
                     </form>
                 </div>
