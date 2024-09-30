@@ -11,7 +11,8 @@ class authControllers {
       const admin = await adminModel.findOne({ email }).select("+password");
 
       if (admin) {
-        const match = bcrypt.compare(password, admin.password);
+        const match = await bcrypt.compare(password, admin.password);
+        // console.log(match);
         if (match) {
           const token = await createToken({
             id: admin.id,
@@ -23,10 +24,11 @@ class authControllers {
           });
 
           responseReturn(res, 200, {
+            token,
             message: "Login successfully",
           });
 
-          console.log("Success");
+          // console.log("Success");
         } else {
           responseReturn(res, 404, { error: "Wrong password" });
         }
@@ -35,6 +37,21 @@ class authControllers {
       }
     } catch (error) {
       responseReturn(res, 500, { error: error.message });
+    }
+  };
+
+  getUser = async (req, res) => {
+    const { id, role } = req;
+
+    try {
+      if (role === "admin") {
+        const user = await adminModel.findById(id);
+        responseReturn(res, 200, { userInfo: user });
+      } else {
+        console.log("Seller info");
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 }
