@@ -1,11 +1,11 @@
 import React from 'react';
 import { MdCurrencyYen, MdOutlineShoppingCart } from "react-icons/md";
-import { HiUserGroup } from "react-icons/hi2";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
     return (
+
         // Main dashboard
         <div className='px-2 md:px-7 py-5'>
             {/* // Summary tabs */}
@@ -36,19 +36,6 @@ const AdminDashboard = () => {
                     </div>
                 </div>
 
-                {/* // Sellers */}
-                <div className='flex justify-between items-center p-5 bg-[#E9FEEA] rounded-md gap-3'>
-                    <div className='flex flex-col justify-start items-start text-[#5C5A5A]'>
-                        <h2 className='font-bold text-3xl'>50</h2>
-                        <span className='text-md font-medium'>Sellers</span>
-                    </div>
-
-                    <div className='w-[40px] h-[47px] rounded-full bg-[#038000] flex justify-center
-                    items-center text-xl'>
-                        <HiUserGroup  className='text-[white] shadow-lg'/>
-                    </div>
-                </div>
-
                 {/* // Orders */}
                 <div className='flex justify-between items-center p-5 bg-[#ECEBFF] rounded-md gap-3'>
                     <div className='flex flex-col justify-start items-start text-[#5C5A5A]'>
@@ -70,7 +57,7 @@ const AdminDashboard = () => {
                     {/* // Header */}
                     <div className='flex justify-between items-center'>
                         <h2 className='font-semibold text-lg text-[#D0D2D6] pb-3'>Recent seller messages</h2>
-                        <Link className='font-semibold text-sm text-[#D0D2D6] pb-3'>View all</Link>
+                        <Link to='/admin/chat' className='font-semibold text-sm text-[#D0D2D6] pb-3'>View all</Link>
                     </div>
 
                     {/* // Unseen messages */}
@@ -81,7 +68,7 @@ const AdminDashboard = () => {
                                <div className='p-3 bg-slate-800 rounded-lg border border-slate-600 shadow-sm'>
                                     <div className='flex justify-between items-center mb-2'>
                                         <Link className='text-md font-normal'>Admin</Link>
-                                        <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0' datetime="">2 days ago</time>
+                                        <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0' dateTime="">2 days ago</time>
                                     </div>
 
                                     <div className='p-2 text-xs font-normal bg-slate-700 rounded-lg border border-slate-800'>
@@ -95,7 +82,7 @@ const AdminDashboard = () => {
                                <div className='p-3 bg-slate-800 rounded-lg border border-slate-600 shadow-sm'>
                                     <div className='flex justify-between items-center mb-2'>
                                         <Link className='text-md font-normal'>Admin</Link>
-                                        <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0' datetime="">2 days ago</time>
+                                        <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0' dateTime="">2 days ago</time>
                                     </div>
 
                                     <div className='p-2 text-xs font-normal bg-slate-700 rounded-lg border border-slate-800'>
@@ -109,7 +96,7 @@ const AdminDashboard = () => {
                                <div className='p-3 bg-slate-800 rounded-lg border border-slate-600 shadow-sm'>
                                     <div className='flex justify-between items-center mb-2'>
                                         <Link className='text-md font-normal'>Admin</Link>
-                                        <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0' datetime="">2 days ago</time>
+                                        <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0' dateTime="">2 days ago</time>
                                     </div>
 
                                     <div className='p-2 text-xs font-normal bg-slate-700 rounded-lg border border-slate-800'>
@@ -127,7 +114,7 @@ const AdminDashboard = () => {
                 {/* // Header  */}
                 <div className='flex justify-between items-center'>
                     <h2 className='font-semibold text-lg text-[#d0d2d6] pb-3 '>Recent Orders</h2>
-                    <Link className='font-semibold text-sm text-[#d0d2d6]'>View All</Link>
+                    <Link to='/admin/orders' className='font-semibold text-sm text-[#d0d2d6]'>View All</Link>
                 </div>
 
                 {/* // Table  */}
