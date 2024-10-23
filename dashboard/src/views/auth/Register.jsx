@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { PulseLoader } from 'react-spinners';
+import { overrideStyle } from './../../utils/utils';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { messageClear, userRegister } from '../../store/Reducers/authReducer';
 
 const Register = () => {
 
@@ -17,10 +23,27 @@ const Register = () => {
         })
     }
 
+    const {loader, errorMessage, successMessage} = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+
     const submit = (e) => {
         e.preventDefault()
-        console.log(state)
+        dispatch(userRegister(state))
     }
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+
+        if (successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+            navigate('/')
+        }
+    })
 
     return (
         <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
@@ -60,12 +83,12 @@ const Register = () => {
                             <label htmlFor="checkbox">I agree with the policies & terms</label>
                         </div>
 
-                        <button className='bg-slate-700 w-full hover:shadow-blue-300/50 hover:shadow-lg 
-                        text-white rounded-md px-7 py-2 mb-3' type='submit'>
-                            Sign Up
+                        <button disabled={loader ? true : false} className='bg-slate-700 w-full hover:shadow-blue-300/50 hover:shadow-lg 
+                        text-white rounded-md px-7 py-2 mb-3'>
+                            {loader ? <PulseLoader color='#fff' cssOverride={overrideStyle}/> : 'Sign Up'}
                         </button>
 
-                        <p className="mt-10 text-center text-sm text-white">
+                        <p className="mt-1 text-center text-sm text-white">
                             Already have account?
                             <a href="/login" className="font-bold leading-6 text-indigo-100 hover:text-green-400"> Login Now</a>
                         </p>

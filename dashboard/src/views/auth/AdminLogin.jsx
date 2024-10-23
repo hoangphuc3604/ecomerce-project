@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { admin_login, messageClear } from '../../store/Reducers/authReducer';
+import { adminLogin, messageClear } from '../../store/Reducers/authReducer';
 import { PulseLoader } from 'react-spinners';
 import toast from 'react-hot-toast';
+import { overrideStyle } from './../../utils/utils';
 import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
@@ -25,15 +26,7 @@ const AdminLogin = () => {
 
     const submit = (e) => {
         e.preventDefault()
-        dispatch(admin_login(state))
-    }
-
-    const overrideStyle = {
-        dislay: 'flex',
-        margin: '0 auto',
-        height: '50%',
-        justifyContent: 'center',
-        alignItem: 'center'
+        dispatch(adminLogin(state))
     }
 
     useEffect(() => {
@@ -45,7 +38,7 @@ const AdminLogin = () => {
         if (successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            navigate('/admin/dashboard')
+            navigate('/')
         }
     })
 
