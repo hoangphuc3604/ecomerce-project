@@ -1,8 +1,8 @@
 import { AiOutlineDashboard, AiOutlineShoppingCart } from "react-icons/ai";
 import { BiSolidCategory } from "react-icons/bi";
-import { FaUsers, FaUserTimes } from "react-icons/fa";
-import { MdPayment } from "react-icons/md";
-import { IoMdGitPullRequest, IoIosChatbubbles } from "react-icons/io";
+import { MdPayment, MdAddShoppingCart } from "react-icons/md";
+import { IoIosChatbubbles } from "react-icons/io";
+import { FaProductHunt } from "react-icons/fa";
 
 export const allNav = [
   {
@@ -24,41 +24,34 @@ export const allNav = [
     title: "Category",
     icon: <BiSolidCategory />,
     role: "admin",
-    path: "/admin/dashboard/category",
+    path: "/admin/category",
   },
   {
     id: 4,
-    title: "Sellers",
-    icon: <FaUsers />,
+    title: "Add Product",
+    icon: <MdAddShoppingCart />,
     role: "admin",
-    path: "/admin/dashboard/sellers",
+    path: "/admin/add-product",
   },
   {
     id: 5,
     title: "Payment Request",
     icon: <MdPayment />,
     role: "admin",
-    path: "/admin/dashboard/payment-request",
+    path: "/admin/payment-request",
   },
   {
     id: 6,
-    title: "Deactive Sellers",
-    icon: <FaUserTimes />,
-    role: "admin",
-    path: "/admin/dashboard/deactive-sellers",
-  },
-  {
-    id: 7,
-    title: "Seller Requests",
-    icon: <IoMdGitPullRequest />,
-    role: "admin",
-    path: "/admin/dashboard/seller-requests",
-  },
-  {
-    id: 8,
     title: "Live Chat",
     icon: <IoIosChatbubbles />,
     role: "admin",
-    path: "/admin/dashboard/seller-chat",
+    path: "/admin/chat",
+  },
+  {
+    id: 7,
+    title: "All Products",
+    icon: <FaProductHunt />,
+    role: "admin",
+    path: "/admin/all-products",
   },
 ];
