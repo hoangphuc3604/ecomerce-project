@@ -75,8 +75,6 @@ const returnRole = (token) => {
     localStorage.removeItem("accessToken");
     return "";
   }
-
-  // console.log(token);
 };
 
 export const authReducer = createSlice({
